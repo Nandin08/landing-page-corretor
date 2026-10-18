@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
 :root {
     --azul-remax: #0054a6;
     --azul-claro: #1475d1;
@@ -15,8 +12,12 @@
     --texto-secundario: #b9c2cc;
 
     --borda: #28313d;
-}
 
+    --whatsapp: #25d366;
+    --whatsapp-hover: #1fbd5a;
+
+    --altura-header: 84px;
+}
 
 * {
     margin: 0;
@@ -24,11 +25,14 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
-}
 
+    /* evita que o cabeçalho fixo cubra o início da seção */
+    scroll-padding-top: var(--altura-header);
+
+    -webkit-text-size-adjust: 100%;
+}
 
 body {
     background-color: var(--fundo);
@@ -36,18 +40,31 @@ body {
     color: var(--texto);
 }
 
+a:focus-visible {
+    outline: 2px solid var(--azul-claro);
+    outline-offset: 3px;
+}
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
 
     padding: 15px 32px;
 
     background-color: rgba(11, 16, 23, 0.96);
 
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+
     border-bottom: 1px solid var(--borda);
 }
-
 
 header .logo {
     height: 48px;
@@ -59,36 +76,67 @@ header .logo {
     border-radius: 8px;
 }
 
+header nav {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+header nav a {
+    color: var(--texto-secundario);
+
+    text-decoration: none;
+
+    font-size: 0.92rem;
+    font-weight: 500;
+
+    padding: 9px 14px;
+
+    border: 1px solid transparent;
+
+    border-radius: 8px;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+/* última aba (Contato) em destaque */
+header nav a:last-child {
+    color: var(--branco);
+
+    border-color: var(--azul-remax);
+}
 
 main {
     width: 100%;
 }
 
+/* ---------- SOBRE MIM ---------- */
 
 .sobre {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
     flex-wrap: wrap;
 
     gap: 70px;
 
-    max-width: 1100px;
+    /* largura e linha alinhadas com as seções de avaliações e contato */
+    width: calc(100% - 48px);
+    max-width: 1052px;
 
     margin: 0 auto;
+    padding: 90px 0;
 
-    padding: 90px 24px;
+    border-top: 1px solid var(--borda);
 }
-
 
 .texto {
     flex: 1;
-
     min-width: 280px;
 }
-
 
 .sobre h1 {
     font-size: clamp(2.2rem, 5vw, 3.2rem);
@@ -103,7 +151,6 @@ main {
 
     letter-spacing: -1px;
 }
-
 
 .sobre h1::after {
     content: "";
@@ -120,26 +167,22 @@ main {
     border-radius: 20px;
 }
 
-
 .sobre p {
-    font-size: 1rem;
-
-    line-height: 1.85;
+    max-width: 650px;
 
     color: var(--texto-secundario);
 
-    max-width: 650px;
+    font-size: 1rem;
+    line-height: 1.85;
 }
-
 
 .sobre .foto {
     width: 360px;
-
     max-width: 100%;
 
-    border-radius: 18px;
-
     object-fit: cover;
+
+    border-radius: 18px;
 
     border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -152,34 +195,34 @@ main {
         box-shadow 0.3s ease;
 }
 
+@media (hover: hover) {
+    .sobre .foto:hover {
+        transform: translateY(-5px);
 
-.sobre .foto:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.45),
-        12px 12px 0 rgba(227, 27, 35, 0.18);
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.45),
+            12px 12px 0 rgba(227, 27, 35, 0.18);
+    }
 }
 
+/* ---------- TÍTULOS ---------- */
 
 h2 {
     position: relative;
 
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--branco);
 
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 600;
 
     text-align: center;
 
-    color: var(--branco);
+    letter-spacing: -0.5px;
 
     padding: 75px 24px 25px;
 
     border-top: 1px solid var(--borda);
-
-    letter-spacing: -0.5px;
 }
-
 
 h2::after {
     content: "";
@@ -202,26 +245,32 @@ h2::after {
     );
 }
 
+/* ---------- ASSISTA ---------- */
 
 #assista {
     max-width: 950px;
 
     margin: 0 auto;
-
     padding: 30px 24px 100px;
 }
 
+/* primeiro título da página: sem linha em cima (o cabeçalho já tem a dele) */
+#assista h2 {
+    padding-top: 60px;
+
+    border-top: none;
+}
 
 #video {
     width: 100%;
 
     aspect-ratio: 16 / 9;
 
-    background-color: #000;
+    overflow: hidden;
+
+    background-color: #000000;
 
     border-radius: 18px;
-
-    overflow: hidden;
 
     border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -230,25 +279,23 @@ h2::after {
         0 0 40px rgba(0, 84, 166, 0.07);
 }
 
-
 iframe {
+    display: block;
+
     width: 100%;
     height: 100%;
-
-    display: block;
 
     border: none;
 }
 
+/* ---------- AVALIAÇÕES ---------- */
 
 .avaliacoes {
     max-width: 1100px;
 
     margin: 0 auto;
-
     padding: 0 24px 100px;
 }
-
 
 .avaliacoes-topo {
     text-align: center;
@@ -256,12 +303,10 @@ iframe {
     margin-bottom: 45px;
 }
 
-
 .avaliacoes-tag {
     color: var(--vermelho-remax);
 
     font-size: 0.85rem;
-
     font-weight: 600;
 
     text-transform: uppercase;
@@ -271,22 +316,18 @@ iframe {
     margin-bottom: 8px;
 }
 
-
 .avaliacoes h2 {
-    border-top: 1px solid var(--borda);
+    margin: 0;
 
     padding: 75px 0 20px;
 
-    margin: 0;
+    border-top: 1px solid var(--borda);
 }
-
 
 .nota-google {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     flex-wrap: wrap;
 
     gap: 10px;
@@ -294,15 +335,12 @@ iframe {
     margin-top: 5px;
 }
 
-
 .nota {
-    font-size: 1.5rem;
-
-    font-weight: 600;
-
     color: var(--branco);
-}
 
+    font-size: 1.5rem;
+    font-weight: 600;
+}
 
 .estrelas,
 .estrelas-card {
@@ -311,18 +349,15 @@ iframe {
     letter-spacing: 2px;
 }
 
-
 .estrelas {
     font-size: 1.25rem;
 }
-
 
 .quantidade {
     color: var(--texto-secundario);
 
     font-size: 0.9rem;
 }
-
 
 .avaliacoes-grid {
     display: grid;
@@ -332,35 +367,30 @@ iframe {
     gap: 20px;
 }
 
-
 .avaliacao-card {
     display: flex;
-
     flex-direction: column;
 
     grid-column: span 2;
+
+    min-height: 320px;
+
+    padding: 25px;
 
     background-color: var(--fundo-secundario);
 
     border: 1px solid var(--borda);
 
     border-radius: 14px;
-
-    padding: 25px;
-
-    min-height: 320px;
 }
-
 
 .avaliacao-card:nth-child(4) {
     grid-column: 2 / span 2;
 }
 
-
 .avaliacao-card:nth-child(5) {
     grid-column: 4 / span 2;
 }
-
 
 .avaliacao-card::before {
     content: "";
@@ -370,29 +400,25 @@ iframe {
     width: 38px;
     height: 3px;
 
+    margin-bottom: 22px;
+
     background-color: var(--azul-remax);
 
     border-radius: 20px;
-
-    margin-bottom: 22px;
 }
-
 
 .avaliacao-cabecalho {
     margin-bottom: 20px;
 }
 
-
 .avaliacao-cabecalho h3 {
     color: var(--branco);
 
     font-size: 1rem;
-
     font-weight: 600;
 
     margin-bottom: 2px;
 }
-
 
 .origem {
     display: block;
@@ -404,15 +430,13 @@ iframe {
     margin-bottom: 10px;
 }
 
-
 .estrelas-card {
     display: block;
 
     font-size: 0.95rem;
 }
 
-
-.avaliacao-card p {
+.avaliacao-card blockquote {
     color: var(--texto-secundario);
 
     font-size: 0.92rem;
@@ -420,13 +444,11 @@ iframe {
     line-height: 1.75;
 }
 
-
 .avaliacoes-link {
     text-align: center;
 
     margin-top: 35px;
 }
-
 
 .avaliacoes-link a {
     display: inline-block;
@@ -436,7 +458,6 @@ iframe {
     text-decoration: none;
 
     font-size: 0.95rem;
-
     font-weight: 500;
 
     padding: 12px 22px;
@@ -444,44 +465,199 @@ iframe {
     border: 1px solid var(--azul-remax);
 
     border-radius: 8px;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
 }
 
-
-.avaliacoes-link a:hover {
-    background-color: var(--azul-remax);
+@media (hover: hover) {
+    .avaliacoes-link a:hover {
+        background-color: var(--azul-remax);
+    }
 }
 
+/* ---------- CONTATOS ---------- */
+
+#contatos {
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 0 24px 100px;
+
+    text-align: center;
+}
+
+#contatos h2 {
+    margin: 0;
+
+    padding: 75px 24px 25px;
+
+    border-top: 1px solid var(--borda);
+}
+
+#contatos p {
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    color: var(--texto-secundario);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+.bloco-contatos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-top: 38px;
+}
+
+.botao-zap,
+.botao-insta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    min-width: 240px;
+
+    padding: 14px 24px;
+
+    color: var(--branco);
+
+    text-decoration: none;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    border: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.botao-zap img,
+.botao-insta img {
+    width: 26px;
+    height: 26px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+/* texto escuro: o branco sobre o verde do WhatsApp tem contraste baixo */
+.botao-zap {
+    color: var(--fundo);
+
+    background-color: var(--whatsapp);
+
+    box-shadow:
+        0 10px 30px rgba(37, 211, 102, 0.15);
+}
+
+@media (hover: hover) {
+    .botao-zap:hover {
+        background-color: var(--whatsapp-hover);
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 14px 35px rgba(37, 211, 102, 0.24);
+    }
+}
+
+.botao-insta {
+    background: linear-gradient(
+        135deg,
+        #405de6 0%,
+        #833ab4 28%,
+        #c13584 50%,
+        #e1306c 68%,
+        #fd1d1d 82%,
+        #f77737 100%
+    );
+
+    box-shadow:
+        0 10px 30px rgba(193, 53, 132, 0.15);
+}
+
+@media (hover: hover) {
+    .botao-insta:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 14px 35px rgba(193, 53, 132, 0.26);
+    }
+}
+
+@media (hover: hover) {
+    header nav a:hover {
+        color: var(--branco);
+
+        background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    header nav a:last-child:hover {
+        background-color: var(--azul-remax);
+    }
+}
+
+/* ---------- CELULAR / TABLET ---------- */
 
 @media (max-width: 800px) {
 
-    header {
-        padding: 12px 20px;
+    :root {
+        --altura-header: 76px;
     }
 
+    header {
+        gap: 12px;
+
+        padding: 12px 20px;
+    }
 
     header .logo {
         height: 43px;
     }
 
+    header nav {
+        gap: 2px;
+    }
+
+    header nav a {
+        font-size: 0.88rem;
+
+        padding: 9px 10px;
+    }
 
     .sobre {
         flex-direction: column;
 
         gap: 45px;
 
-        padding: 65px 24px;
+        padding: 65px 0;
     }
-
 
     .texto {
         width: 100%;
     }
 
-
     .sobre h1 {
         font-size: 2.3rem;
     }
-
 
     .sobre p {
         font-size: 0.96rem;
@@ -489,13 +665,10 @@ iframe {
         line-height: 1.75;
     }
 
-
     .sobre .foto {
         width: 100%;
-
         max-width: 430px;
     }
-
 
     h2 {
         padding-top: 60px;
@@ -503,21 +676,17 @@ iframe {
         font-size: 2rem;
     }
 
-
     #assista {
         padding-bottom: 70px;
     }
-
 
     #video {
         border-radius: 14px;
     }
 
-
     .avaliacoes {
         padding: 0 24px 70px;
     }
-
 
     .avaliacoes-grid {
         grid-template-columns: 1fr;
@@ -527,7 +696,6 @@ iframe {
         margin: 0 auto;
     }
 
-
     .avaliacao-card,
     .avaliacao-card:nth-child(4),
     .avaliacao-card:nth-child(5) {
@@ -536,42 +704,109 @@ iframe {
         min-height: auto;
     }
 
-
     .nota-google {
         flex-direction: column;
 
         gap: 4px;
     }
 
+    #contatos {
+        padding: 0 24px 70px;
+    }
+
+    #contatos h2 {
+        padding-top: 60px;
+    }
+
+    #contatos p {
+        font-size: 0.96rem;
+
+        line-height: 1.75;
+    }
+
+    .bloco-contatos {
+        flex-direction: column;
+    }
+
+    .botao-zap,
+    .botao-insta {
+        width: 100%;
+        max-width: 360px;
+    }
 }
 
+/* celular: logo em cima, abas embaixo, ocupando a largura toda */
+@media (max-width: 640px) {
 
-@media (max-width: 480px) {
+    :root {
+        --altura-header: 108px;
+    }
 
     header {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 8px;
+
         padding: 10px 16px;
     }
 
+    header .logo {
+        height: 36px;
+
+        align-self: flex-start;
+    }
+
+    header nav {
+        justify-content: space-between;
+
+        gap: 4px;
+    }
+
+    header nav a {
+        flex: 1 1 auto;
+
+        text-align: center;
+
+        font-size: 0.85rem;
+
+        padding: 9px 4px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    :root {
+        --altura-header: 102px;
+    }
+
+    header {
+        padding: 8px 12px;
+    }
 
     header .logo {
-        height: 40px;
+        height: 34px;
     }
 
+    header nav a {
+        font-size: 0.8rem;
+
+        padding: 9px 2px;
+    }
 
     .sobre {
-        padding: 50px 18px;
-    }
+        width: calc(100% - 36px);
 
+        padding: 50px 0;
+    }
 
     .sobre h1 {
         font-size: 2rem;
     }
 
-
     .sobre p {
         font-size: 0.92rem;
     }
-
 
     h2 {
         font-size: 1.7rem;
@@ -580,27 +815,43 @@ iframe {
         padding-right: 18px;
     }
 
-
     #assista {
         padding-left: 18px;
         padding-right: 18px;
     }
-
 
     .avaliacoes {
         padding-left: 18px;
         padding-right: 18px;
     }
 
-
     .avaliacao-card {
         padding: 22px;
     }
-
 
     .avaliacoes h2 {
         padding-left: 0;
         padding-right: 0;
     }
 
+    #contatos {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    #contatos p {
+        font-size: 0.92rem;
+    }
+
+    .botao-zap,
+    .botao-insta {
+        width: 100%;
+        max-width: none;
+    }
+
+    .botao-zap img,
+    .botao-insta img {
+        width: 24px;
+        height: 24px;
+    }
 }
