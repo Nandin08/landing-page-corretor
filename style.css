@@ -1,3 +1,7 @@
+/* =========================================================
+   1. VARIÁVEIS
+   ========================================================= */
+
 :root {
     --azul-remax: #0054a6;
     --azul-claro: #1475d1;
@@ -19,6 +23,11 @@
     --altura-header: 84px;
 }
 
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -27,10 +36,8 @@
 
 html {
     scroll-behavior: smooth;
-
     /* evita que o cabeçalho fixo cubra o início da seção */
     scroll-padding-top: var(--altura-header);
-
     -webkit-text-size-adjust: 100%;
 }
 
@@ -45,58 +52,47 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
+
+/* =========================================================
+   3. CABEÇALHO
+   ========================================================= */
+
 header {
     position: sticky;
     top: 0;
     z-index: 100;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 24px;
-
     padding: 15px 32px;
-
     background-color: rgba(11, 16, 23, 0.96);
-
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-
     border-bottom: 1px solid var(--borda);
 }
 
 header .logo {
     height: 48px;
-
-    background-color: var(--branco);
-
     padding: 7px 12px;
-
+    background-color: var(--branco);
     border-radius: 8px;
 }
 
 header nav {
     display: flex;
     align-items: center;
-
     gap: 6px;
 }
 
 header nav a {
+    padding: 9px 14px;
     color: var(--texto-secundario);
-
     text-decoration: none;
-
     font-size: 0.92rem;
     font-weight: 500;
-
-    padding: 9px 14px;
-
     border: 1px solid transparent;
-
     border-radius: 8px;
-
     transition:
         color 0.2s ease,
         background-color 0.2s ease;
@@ -105,137 +101,43 @@ header nav a {
 /* última aba (Contato) em destaque */
 header nav a:last-child {
     color: var(--branco);
-
     border-color: var(--azul-remax);
 }
 
-main {
-    width: 100%;
-}
-
-/* ---------- SOBRE MIM ---------- */
-
-.sobre {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    gap: 70px;
-
-    /* largura e linha alinhadas com as seções de avaliações e contato */
-    width: calc(100% - 48px);
-    max-width: 1052px;
-
-    margin: 0 auto;
-    padding: 90px 0;
-
-    border-top: 1px solid var(--borda);
-}
-
-.texto {
-    flex: 1;
-    min-width: 280px;
-}
-
-.sobre h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-
-    line-height: 1.15;
-
-    font-weight: 600;
-
-    color: var(--branco);
-
-    margin-bottom: 24px;
-
-    letter-spacing: -1px;
-}
-
-.sobre h1::after {
-    content: "";
-
-    display: block;
-
-    width: 65px;
-    height: 4px;
-
-    background-color: var(--vermelho-remax);
-
-    margin-top: 18px;
-
-    border-radius: 20px;
-}
-
-.sobre p {
-    max-width: 650px;
-
-    color: var(--texto-secundario);
-
-    font-size: 1rem;
-    line-height: 1.85;
-}
-
-.sobre .foto {
-    width: 360px;
-    max-width: 100%;
-
-    object-fit: cover;
-
-    border-radius: 18px;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.35),
-        12px 12px 0 rgba(0, 84, 166, 0.15);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
 @media (hover: hover) {
-    .sobre .foto:hover {
-        transform: translateY(-5px);
+    header nav a:hover {
+        color: var(--branco);
+        background-color: rgba(255, 255, 255, 0.06);
+    }
 
-        box-shadow:
-            0 25px 60px rgba(0, 0, 0, 0.45),
-            12px 12px 0 rgba(227, 27, 35, 0.18);
+    header nav a:last-child:hover {
+        background-color: var(--azul-remax);
     }
 }
 
-/* ---------- TÍTULOS ---------- */
+
+/* =========================================================
+   4. TÍTULOS DAS SEÇÕES (h2)
+   ========================================================= */
 
 h2 {
-    position: relative;
-
+    padding: 75px 24px 25px;
     color: var(--branco);
-
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 600;
-
     text-align: center;
-
     letter-spacing: -0.5px;
-
-    padding: 75px 24px 25px;
-
     border-top: 1px solid var(--borda);
 }
 
+/* risquinho azul e vermelho embaixo do título */
 h2::after {
     content: "";
-
     display: block;
-
     width: 70px;
     height: 4px;
-
     margin: 18px auto 0;
-
     border-radius: 20px;
-
     background: linear-gradient(
         90deg,
         var(--azul-remax) 0%,
@@ -245,11 +147,13 @@ h2::after {
     );
 }
 
-/* ---------- ASSISTA ---------- */
+
+/* =========================================================
+   5. ASSISTA (vídeo)
+   ========================================================= */
 
 #assista {
     max-width: 950px;
-
     margin: 0 auto;
     padding: 30px 24px 100px;
 }
@@ -257,87 +161,145 @@ h2::after {
 /* primeiro título da página: sem linha em cima (o cabeçalho já tem a dele) */
 #assista h2 {
     padding-top: 60px;
-
     border-top: none;
 }
 
 #video {
     width: 100%;
-
     aspect-ratio: 16 / 9;
-
     overflow: hidden;
-
     background-color: #000000;
-
-    border-radius: 18px;
-
     border: 1px solid rgba(255, 255, 255, 0.08);
-
+    border-radius: 18px;
     box-shadow:
         0 25px 70px rgba(0, 0, 0, 0.45),
         0 0 40px rgba(0, 84, 166, 0.07);
 }
 
-iframe {
+#video iframe {
     display: block;
-
     width: 100%;
     height: 100%;
-
     border: none;
 }
 
-/* ---------- AVALIAÇÕES ---------- */
 
-.avaliacoes {
+/* =========================================================
+   6. SOBRE MIM
+   ========================================================= */
+
+.sobre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 70px;
+    /* largura e linha alinhadas com as seções de avaliações e contato */
+    width: calc(100% - 48px);
+    max-width: 1052px;
+    margin: 0 auto;
+    padding: 90px 0;
+    border-top: 1px solid var(--borda);
+}
+
+.texto {
+    flex: 1;
+    min-width: 280px;
+}
+
+.sobre h1 {
+    margin-bottom: 24px;
+    color: var(--branco);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+/* risquinho vermelho embaixo do nome */
+.sobre h1::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 4px;
+    margin-top: 18px;
+    background-color: var(--vermelho-remax);
+    border-radius: 20px;
+}
+
+.sobre p {
+    max-width: 650px;
+    color: var(--texto-secundario);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.sobre .foto {
+    width: 360px;
+    max-width: 100%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35),
+        12px 12px 0 rgba(0, 84, 166, 0.15);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+    .sobre .foto:hover {
+        transform: translateY(-5px);
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.45),
+            12px 12px 0 rgba(227, 27, 35, 0.18);
+    }
+}
+
+
+/* =========================================================
+   7. AVALIAÇÕES
+   ========================================================= */
+
+/* mesmo container da seção de contato */
+.avaliacoes,
+#contatos {
     max-width: 1100px;
-
     margin: 0 auto;
     padding: 0 24px 100px;
 }
 
 .avaliacoes-topo {
-    text-align: center;
-
     margin-bottom: 45px;
+    text-align: center;
 }
 
 .avaliacoes-tag {
+    margin-bottom: 8px;
     color: var(--vermelho-remax);
-
     font-size: 0.85rem;
     font-weight: 600;
-
     text-transform: uppercase;
-
     letter-spacing: 1.5px;
-
-    margin-bottom: 8px;
 }
 
 .avaliacoes h2 {
-    margin: 0;
-
     padding: 75px 0 20px;
-
-    border-top: 1px solid var(--borda);
 }
 
+/* nota geral: "5,0 ★★★★★ 40 avaliações" */
 .nota-google {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
     gap: 10px;
-
     margin-top: 5px;
 }
 
 .nota {
     color: var(--branco);
-
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -345,7 +307,6 @@ iframe {
 .estrelas,
 .estrelas-card {
     color: #fbbc04;
-
     letter-spacing: 2px;
 }
 
@@ -355,32 +316,24 @@ iframe {
 
 .quantidade {
     color: var(--texto-secundario);
-
     font-size: 0.9rem;
 }
 
+/* grade: 3 cards em cima, 2 centralizados embaixo */
 .avaliacoes-grid {
     display: grid;
-
     grid-template-columns: repeat(6, 1fr);
-
     gap: 20px;
 }
 
 .avaliacao-card {
     display: flex;
     flex-direction: column;
-
     grid-column: span 2;
-
     min-height: 320px;
-
     padding: 25px;
-
     background-color: var(--fundo-secundario);
-
     border: 1px solid var(--borda);
-
     border-radius: 14px;
 }
 
@@ -392,18 +345,14 @@ iframe {
     grid-column: 4 / span 2;
 }
 
+/* risquinho azul no topo do card */
 .avaliacao-card::before {
     content: "";
-
     display: block;
-
     width: 38px;
     height: 3px;
-
     margin-bottom: 22px;
-
     background-color: var(--azul-remax);
-
     border-radius: 20px;
 }
 
@@ -412,60 +361,44 @@ iframe {
 }
 
 .avaliacao-cabecalho h3 {
+    margin-bottom: 2px;
     color: var(--branco);
-
     font-size: 1rem;
     font-weight: 600;
-
-    margin-bottom: 2px;
 }
 
 .origem {
     display: block;
-
-    color: var(--texto-secundario);
-
-    font-size: 0.78rem;
-
     margin-bottom: 10px;
+    color: var(--texto-secundario);
+    font-size: 0.78rem;
 }
 
 .estrelas-card {
     display: block;
-
     font-size: 0.95rem;
 }
 
 .avaliacao-card blockquote {
     color: var(--texto-secundario);
-
     font-size: 0.92rem;
-
     line-height: 1.75;
 }
 
 .avaliacoes-link {
-    text-align: center;
-
     margin-top: 35px;
+    text-align: center;
 }
 
 .avaliacoes-link a {
     display: inline-block;
-
+    padding: 12px 22px;
     color: var(--branco);
-
     text-decoration: none;
-
     font-size: 0.95rem;
     font-weight: 500;
-
-    padding: 12px 22px;
-
     border: 1px solid var(--azul-remax);
-
     border-radius: 8px;
-
     transition:
         background-color 0.25s ease,
         border-color 0.25s ease;
@@ -477,34 +410,26 @@ iframe {
     }
 }
 
-/* ---------- CONTATOS ---------- */
+
+/* =========================================================
+   8. CONTATO
+   ========================================================= */
 
 #contatos {
-    max-width: 1100px;
-
-    margin: 0 auto;
-    padding: 0 24px 100px;
-
     text-align: center;
 }
 
+/* mantém 24px nas laterais do título mesmo no celular pequeno */
 #contatos h2 {
-    margin: 0;
-
-    padding: 75px 24px 25px;
-
-    border-top: 1px solid var(--borda);
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 #contatos p {
     max-width: 720px;
-
     margin: 0 auto;
-
     color: var(--texto-secundario);
-
     font-size: 1rem;
-
     line-height: 1.8;
 }
 
@@ -513,9 +438,7 @@ iframe {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
     gap: 18px;
-
     margin-top: 38px;
 }
 
@@ -524,24 +447,13 @@ iframe {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     gap: 11px;
-
     min-width: 240px;
-
     padding: 14px 24px;
-
-    color: var(--branco);
-
     text-decoration: none;
-
     font-size: 0.95rem;
     font-weight: 600;
-
     border-radius: 10px;
-
-    border: none;
-
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
@@ -550,36 +462,21 @@ iframe {
 
 .botao-zap img,
 .botao-insta img {
+    flex-shrink: 0;
     width: 26px;
     height: 26px;
-
     object-fit: contain;
-
-    flex-shrink: 0;
 }
 
 /* texto escuro: o branco sobre o verde do WhatsApp tem contraste baixo */
 .botao-zap {
     color: var(--fundo);
-
     background-color: var(--whatsapp);
-
-    box-shadow:
-        0 10px 30px rgba(37, 211, 102, 0.15);
-}
-
-@media (hover: hover) {
-    .botao-zap:hover {
-        background-color: var(--whatsapp-hover);
-
-        transform: translateY(-2px);
-
-        box-shadow:
-            0 14px 35px rgba(37, 211, 102, 0.24);
-    }
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.15);
 }
 
 .botao-insta {
+    color: var(--branco);
     background: linear-gradient(
         135deg,
         #405de6 0%,
@@ -589,33 +486,29 @@ iframe {
         #fd1d1d 82%,
         #f77737 100%
     );
-
-    box-shadow:
-        0 10px 30px rgba(193, 53, 132, 0.15);
+    box-shadow: 0 10px 30px rgba(193, 53, 132, 0.15);
 }
 
 @media (hover: hover) {
+    .botao-zap:hover,
     .botao-insta:hover {
         transform: translateY(-2px);
+    }
 
-        box-shadow:
-            0 14px 35px rgba(193, 53, 132, 0.26);
+    .botao-zap:hover {
+        background-color: var(--whatsapp-hover);
+        box-shadow: 0 14px 35px rgba(37, 211, 102, 0.24);
+    }
+
+    .botao-insta:hover {
+        box-shadow: 0 14px 35px rgba(193, 53, 132, 0.26);
     }
 }
 
-@media (hover: hover) {
-    header nav a:hover {
-        color: var(--branco);
 
-        background-color: rgba(255, 255, 255, 0.06);
-    }
-
-    header nav a:last-child:hover {
-        background-color: var(--azul-remax);
-    }
-}
-
-/* ---------- CELULAR / TABLET ---------- */
+/* =========================================================
+   9. RESPONSIVO — TABLET E CELULAR (até 800px)
+   ========================================================= */
 
 @media (max-width: 800px) {
 
@@ -623,9 +516,9 @@ iframe {
         --altura-header: 76px;
     }
 
+    /* cabeçalho */
     header {
         gap: 12px;
-
         padding: 12px 20px;
     }
 
@@ -638,16 +531,31 @@ iframe {
     }
 
     header nav a {
-        font-size: 0.88rem;
-
         padding: 9px 10px;
+        font-size: 0.88rem;
     }
 
+    /* títulos e espaçamento das seções */
+    h2 {
+        padding-top: 60px;
+        font-size: 2rem;
+    }
+
+    #assista,
+    .avaliacoes,
+    #contatos {
+        padding-bottom: 70px;
+    }
+
+    /* assista */
+    #video {
+        border-radius: 14px;
+    }
+
+    /* sobre: foto vai para baixo do texto */
     .sobre {
         flex-direction: column;
-
         gap: 45px;
-
         padding: 65px 0;
     }
 
@@ -659,9 +567,9 @@ iframe {
         font-size: 2.3rem;
     }
 
-    .sobre p {
+    .sobre p,
+    #contatos p {
         font-size: 0.96rem;
-
         line-height: 1.75;
     }
 
@@ -670,29 +578,10 @@ iframe {
         max-width: 430px;
     }
 
-    h2 {
-        padding-top: 60px;
-
-        font-size: 2rem;
-    }
-
-    #assista {
-        padding-bottom: 70px;
-    }
-
-    #video {
-        border-radius: 14px;
-    }
-
-    .avaliacoes {
-        padding: 0 24px 70px;
-    }
-
+    /* avaliações: um card por linha */
     .avaliacoes-grid {
         grid-template-columns: 1fr;
-
         max-width: 600px;
-
         margin: 0 auto;
     }
 
@@ -700,30 +589,15 @@ iframe {
     .avaliacao-card:nth-child(4),
     .avaliacao-card:nth-child(5) {
         grid-column: auto;
-
         min-height: auto;
     }
 
     .nota-google {
         flex-direction: column;
-
         gap: 4px;
     }
 
-    #contatos {
-        padding: 0 24px 70px;
-    }
-
-    #contatos h2 {
-        padding-top: 60px;
-    }
-
-    #contatos p {
-        font-size: 0.96rem;
-
-        line-height: 1.75;
-    }
-
+    /* contato: botões um embaixo do outro */
     .bloco-contatos {
         flex-direction: column;
     }
@@ -735,7 +609,12 @@ iframe {
     }
 }
 
-/* celular: logo em cima, abas embaixo, ocupando a largura toda */
+
+/* =========================================================
+   10. RESPONSIVO — CELULAR (até 640px)
+   logo em cima, abas embaixo, ocupando a largura toda
+   ========================================================= */
+
 @media (max-width: 640px) {
 
     :root {
@@ -745,34 +624,32 @@ iframe {
     header {
         flex-direction: column;
         align-items: stretch;
-
         gap: 8px;
-
         padding: 10px 16px;
     }
 
     header .logo {
-        height: 36px;
-
         align-self: flex-start;
+        height: 36px;
     }
 
     header nav {
         justify-content: space-between;
-
         gap: 4px;
     }
 
     header nav a {
         flex: 1 1 auto;
-
-        text-align: center;
-
-        font-size: 0.85rem;
-
         padding: 9px 4px;
+        text-align: center;
+        font-size: 0.85rem;
     }
 }
+
+
+/* =========================================================
+   11. RESPONSIVO — CELULAR PEQUENO (até 480px)
+   ========================================================= */
 
 @media (max-width: 480px) {
 
@@ -780,6 +657,7 @@ iframe {
         --altura-header: 102px;
     }
 
+    /* cabeçalho */
     header {
         padding: 8px 12px;
     }
@@ -789,14 +667,28 @@ iframe {
     }
 
     header nav a {
-        font-size: 0.8rem;
-
         padding: 9px 2px;
+        font-size: 0.8rem;
     }
 
+
+    /* títulos e margens laterais das seções */
+    h2 {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 1.7rem;
+    }
+
+    #assista,
+    .avaliacoes,
+    #contatos {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    /* sobre */
     .sobre {
         width: calc(100% - 36px);
-
         padding: 50px 0;
     }
 
@@ -804,45 +696,17 @@ iframe {
         font-size: 2rem;
     }
 
-    .sobre p {
-        font-size: 0.92rem;
-    }
-
-    h2 {
-        font-size: 1.7rem;
-
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    #assista {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    .avaliacoes {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    .avaliacao-card {
-        padding: 22px;
-    }
-
-    .avaliacoes h2 {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    #contatos {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
+    .sobre p,
     #contatos p {
         font-size: 0.92rem;
     }
 
+    /* avaliações */
+    .avaliacao-card {
+        padding: 22px;
+    }
+
+    /* contato */
     .botao-zap,
     .botao-insta {
         width: 100%;
